@@ -7,8 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>HP_S.M.S</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -35,8 +34,8 @@
             @include('inc.messages')
             <div class="container-fluid p-0">
                 <div class="row">
-                    
-                    <div class="col jumbotron side-menu">
+                    @include('inc.side')
+                    <div class="col-md-10 jumbotron side-menu">
                         @yield('content')
                     </div>
                 </div>

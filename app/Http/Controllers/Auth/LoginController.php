@@ -39,16 +39,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    public function logIn(Request $request){
-        if(User::logInUser($request)){
-            return view('home');
-        }else{
-            return back()->with('Error', 'Unable to log In');
-        }
-    }
-
-    public function logOut(){
-        User::logOut();
-    }
+    
 }

@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return redirect('/students')->with('success', 'Logined in successfully !');
     }
 
     public function allStudents(){

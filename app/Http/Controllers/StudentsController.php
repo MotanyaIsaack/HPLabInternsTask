@@ -73,7 +73,7 @@ class StudentsController extends Controller
         $student_course->course_id = $request->input('course');
 
         $student_course->save();
-        return redirect('/')->with('success', 'Student Created !');
+        return redirect('/students')->with('success', 'Student Created !');
     }
 
     /**
@@ -97,8 +97,8 @@ class StudentsController extends Controller
     public function edit($id)
     {
         $student = User::find($id);
+        //$course_data = DB::table('student_courses')->where('user_id', '=', $id)->get();;
         $course_name = StudentCourse::with('User')->find($id);
-        //return $course_name;
         $course = Course::find($course_name['course_id'])["course_name"];
         //return $course;
 

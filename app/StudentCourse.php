@@ -9,6 +9,7 @@ class StudentCourse extends Model
     //
     protected $table = "student_courses";
     public $timestamps = false;
+    protected $primaryKey = 'studentcourse_id';
 
     public static function getChartData()
     {
@@ -22,7 +23,6 @@ class StudentCourse extends Model
         }
         return ['totalStudents' => $totalCount, "countPerCourse" => $studentsPerCourse];
 }
-    protected $primaryKey = 'studentcourse_id';
 
     function User(){
 	return $this->belongsTo(\App\User::class);

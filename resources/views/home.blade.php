@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.nav')
 
 @section('content')
 <div class="container">
@@ -13,9 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
-                </div>
+                </div> 
             </div>
         </div>
     </div>

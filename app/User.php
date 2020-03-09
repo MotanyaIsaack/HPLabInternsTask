@@ -38,30 +38,8 @@ class User extends Authenticatable
      * @var array
      */
 
-    protected $primaryKey = 'user_id';
-
-    public function logInUser(Request $request)
-    {
-        $validateData = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
-        if ($validateData->fails()) {
-            return Redirect::to('logIn')->withErrors($validateData)->withInput(['email' => $request->get('email')]);
-        } else {
-            if (Auth::attempt(['email' => $request->get('email'), 'password' => Hash::make($request->get('password'))]))
-                return true;
-        }
-        return false;
-    }
-
-    public static function logOut()
-    {
-        Auth::logout();
-        return redirect('/logIn');
-    }
-
+   protected $primaryKey = 'user_id';
+   
     public static  function getAllStudents()
     {
         $role = Role::where('role_name', 'student')->value('role_id');
