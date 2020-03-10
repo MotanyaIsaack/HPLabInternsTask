@@ -5,6 +5,10 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class User extends Authenticatable
 {
@@ -16,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'address', 'user_role_id', 'suspended', 'password',
     ];
 
     /**
@@ -33,7 +37,23 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+
+   protected $primaryKey = 'user_id';
+   
+    public static  function getAllStudents()
+    {
+        $role = Role::where('role_name', 'student')->value('role_id');
+        if ($role) {
+            $students = User::where('user_role_id', $role)->get();
+            return $students;
+        } else {
+            return [];
+        }
+    }
+    function StudentCourse(){
+	return $this->hasMany(\App\StudentCourse::class);
+
+    
+    }
+
 }
